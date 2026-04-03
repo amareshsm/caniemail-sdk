@@ -2,11 +2,23 @@
 
 # caniemail
 
-Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https://caniemail.com)
+Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https://caniemail.com) — works in **Node.js** and **browsers**.
+
+> **Note:** This project is a fork of [shellscape/caniemail](https://github.com/shellscape/caniemail). Email compatibility data is sourced from [caniemail.com](https://www.caniemail.com/).
+
+## Environment Support
+
+| Environment                    | Format | Entry                              |
+| ------------------------------ | ------ | ---------------------------------- |
+| **Node.js** (≥20.19.0)         | ESM    | `dist/index.js`                    |
+| **Browser** (bundler)          | ESM    | `dist/browser/index.mjs`           |
+| **Browser** (CDN / `<script>`) | IIFE   | `dist/browser/caniemail.global.js` |
 
 ## Requirements
 
-The packages requires an [LTS](https://github.com/nodejs/Release) Node version (v20.19.0+)
+**Node.js:** [LTS](https://github.com/nodejs/Release) Node version (v20.19.0+)
+
+**Browser:** Any modern browser (ES2020+). No polyfills needed.
 
 ## Installation
 
@@ -17,6 +29,66 @@ pnpm add caniemail
 # bun add caniemail
 # yarn add caniemail
 # npm add caniemail
+```
+
+## Usage
+
+### Node.js (ESM)
+
+```typescript
+import { caniemail } from 'caniemail';
+
+const result = caniemail({
+  clients: ['gmail.*', 'outlook.*'],
+  html: '<div style="display: flex;"><p>Hello</p></div>'
+});
+
+console.log(result.success); // false
+```
+
+### Browser (ESM / Frontend Bundlers)
+
+When using a bundler like Vite, webpack, or esbuild, the package automatically resolves to the browser build:
+
+```typescript
+import { caniemail } from 'caniemail';
+
+const result = caniemail({
+  clients: ['gmail.*'],
+  html: '<div style="display: flex;"><p>Hello</p></div>'
+});
+```
+
+### Browser (CDN / `<script>` tag)
+
+Use directly via unpkg or jsDelivr — no build step required:
+
+```html
+<!-- IIFE global bundle -->
+<script src="https://unpkg.com/caniemail/dist/browser/caniemail.global.js"></script>
+<script>
+  const result = CanIEmail.caniemail({
+    clients: ['gmail.*', 'outlook.*'],
+    html: '<div style="display: flex;"><p>Hello</p></div>'
+  });
+  console.log(result.success);
+</script>
+```
+
+Or with ESM via CDN:
+
+```html
+<script type="module">
+  import { caniemail } from 'https://esm.sh/caniemail';
+
+  // or: import { caniemail } from 'https://cdn.jsdelivr.net/npm/caniemail/dist/browser/index.mjs';
+
+  const result = caniemail({
+    clients: ['gmail.*'],
+    html: '<div><p>Hello World</p></div>'
+  });
+  console.log(result.success);
+</script>
 ```
 
 ## Exports
@@ -165,6 +237,25 @@ We 💛 contributions! After all, this is a community-driven project. We have no
 
 Please check out our [Contribution Guide](./CONTRIBUTING.md).
 
+## Building
+
+```bash
+# Build Node.js output
+pnpm build
+
+# Build browser bundles (ESM + IIFE)
+pnpm build:browser
+
+# Build everything (Node.js + browser)
+pnpm build:all
+```
+
+## Credits
+
+- Email compatibility data from [caniemail.com](https://www.caniemail.com/)
+- Originally created by [Avi Goldman](https://github.com/useparcel) and [Andrew Powell](https://github.com/shellscape)
+- Forked and maintained by [Amaresh](https://github.com/amareshsm)
+
 ## License
 
-[MIT License](./LICENSE.md)
+[MIT License](./LICENSE)

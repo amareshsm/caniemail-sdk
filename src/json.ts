@@ -1,3 +1,8 @@
+// JSON data loading — supports both Node.js and browser environments.
+// In Node.js: uses createRequire to load JSON synchronously (avoids Node v20/v22 divergence on `with`/`assert` for JSON imports).
+// In browser: the bundler (tsup) replaces this with an inlined JSON import via the browser entry point.
+import { createRequire } from 'node:module';
+
 export type SupportType = string;
 
 export interface RawFeatureStats {
@@ -74,5 +79,5 @@ export interface CanIEmailJson {
   nice_names: any;
 }
 
-// Note: This is due to Node v20 and Node v22 diverging on `with 'json'` and `assert 'json'` on importing JSON
+const require = createRequire(import.meta.url);
 export const caniEmailJson = require('../data/caniemail.json') as CanIEmailJson;

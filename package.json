@@ -1,17 +1,28 @@
 {
   "name": "caniemail",
   "version": "1.0.5",
-  "description": "HTML and CSS Feature Support for Email Clients from caniemail.com",
+  "description": "HTML and CSS Feature Support for Email Clients from caniemail.com — works in Node.js and browsers",
   "license": "MIT",
-  "repository": "shellscape/caniemail",
-  "author": "Andrew Powell <andrew@shellscape.org>",
-  "homepage": "https://github.com/shellscape/caniemail#README",
+  "repository": "amareshsm/caniemail-toolkit",
+  "author": "Amaresh <amareshsm13@gmail.com>",
+  "homepage": "https://github.com/amareshsm/caniemail-toolkit#README",
   "type": "module",
   "exports": {
     "./caniemail.json": "./data/caniemail.json",
     "./package.json": "./package.json",
     ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "import": "./dist/browser/index.mjs",
+        "default": "./dist/browser/index.mjs"
+      },
+      "node": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      },
       "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
@@ -20,11 +31,13 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
+    "build:all": "pnpm build && pnpm build:browser",
+    "build:browser": "tsup",
     "format": "prettier --write .",
     "lint": "oxlint --format stylish --fix .",
     "postbuild": "cp -r ./data dist",
     "prepare": "husky",
-    "prepublishOnly": "pnpm build",
+    "prepublishOnly": "pnpm build:all",
     "pretest": "pnpm build",
     "release": "versioner --no-commit-scopes --target $(pwd)",
     "test": "vitest run --config ./vitest.config.ts",
@@ -33,11 +46,14 @@
   "files": [
     "data",
     "dist/**",
+    "dist/browser/**",
     "README"
   ],
   "keywords": [
+    "browser",
     "caniemail",
     "caniuse",
+    "cdn",
     "check",
     "client",
     "compat",
@@ -46,11 +62,14 @@
     "css",
     "doiuse",
     "email",
+    "esm",
     "gmail",
     "html",
     "lint",
+    "node",
     "stylelint",
-    "support"
+    "support",
+    "universal"
   ],
   "dependencies": {
     "@adobe/css-tools": "^4.3.1",
@@ -73,6 +92,7 @@
     "@types/micromatch": "^4.0.4",
     "@types/node": "^22.14.1",
     "desm": "^1.3.0",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
     "execa": "^9.5.2",
     "husky": "^9.1.6",
     "lint-staged": "^16.2.1",
@@ -80,6 +100,7 @@
     "oxlint": "^0.16.6",
     "prettier": "^3.5.3",
     "prettier-plugin-package": "^2.0.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.8.3",
     "vitest": "^3.1.1"
   },
@@ -87,6 +108,14 @@
     "domhandler": "^4"
   },
   "types": "dist/index.d.ts",
+  "browser": {
+    "./dist/index.js": "./dist/browser/index.mjs"
+  },
+  "contributors": [
+    "Avi Goldman",
+    "Andrew Powell <andrew@shellscape.org>"
+  ],
+  "jsdelivr": "dist/browser/caniemail.global.js",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "oxlint --format stylish --fix",
@@ -106,5 +135,6 @@
     ]
   },
   "packageManager": "pnpm@9.15.9",
-  "root": true
+  "root": true,
+  "unpkg": "dist/browser/caniemail.global.js"
 }

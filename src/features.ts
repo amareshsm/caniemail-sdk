@@ -2,7 +2,7 @@ import { getProperty } from 'dot-prop';
 import onetime from 'onetime';
 
 import { type EmailClient, type SupportTypeResult, getSupportType } from './clients.js';
-import { type RawFeatureData, caniEmailJson } from './json.cjs';
+import { type RawFeatureData, caniEmailJson } from './json.js';
 
 export { caniEmailJson as rawData };
 
