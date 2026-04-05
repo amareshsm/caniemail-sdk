@@ -1,6 +1,6 @@
 {
-  "name": "caniemail",
-  "version": "1.0.5",
+  "name": "caniemail-tool",
+  "version": "2.0.0",
   "description": "HTML and CSS Feature Support for Email Clients from caniemail.com — works in Node.js and browsers",
   "license": "MIT",
   "repository": "amareshsm/caniemail-toolkit",
@@ -115,7 +115,7 @@
     "Avi Goldman",
     "Andrew Powell <andrew@shellscape.org>"
   ],
-  "jsdelivr": "dist/browser/caniemail.global.js",
+  "jsdelivr": "dist/browser/caniemail-tool.global.js",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "oxlint --format stylish --fix",
@@ -136,5 +136,5 @@
   },
   "packageManager": "pnpm@9.15.9",
   "root": true,
-  "unpkg": "dist/browser/caniemail.global.js"
+  "unpkg": "dist/browser/caniemail-tool.global.js"
 }

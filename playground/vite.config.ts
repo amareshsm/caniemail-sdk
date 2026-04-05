@@ -9,8 +9,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      // Resolve the parent caniemail browser build
-      caniemail: path.resolve(__dirname, '../dist/browser/index.mjs')
+      // Resolve the parent caniemail-tool browser build
+      'caniemail-tool': path.resolve(__dirname, '../dist/browser/index.mjs')
     }
   }
 });

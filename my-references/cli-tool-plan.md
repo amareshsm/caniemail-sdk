@@ -551,7 +551,7 @@ Support a configuration file for shared team settings. Auto-detected in this ord
 
 ```json
 {
-  "caniemail": {
+  "caniemail-tool": {
     "clients": ["gmail.*", "outlook.*"],
     "failOn": "error"
   }
@@ -771,7 +771,7 @@ test/
 ```json
 {
   "bin": {
-    "caniemail": "./dist/bin/caniemail.js"
+    "caniemail-tool": "./dist/bin/caniemail-tool.js"
   }
 }
 ```

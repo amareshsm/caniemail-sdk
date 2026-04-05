@@ -3,10 +3,10 @@ import { useCallback, useRef, useState } from 'react';
 import type { CanIEmailResult, IssueGroup } from '@/lib/caniemail-types';
 
 // Dynamic import of the browser bundle
-let _lib: typeof import('caniemail') | null = null;
+let _lib: typeof import('caniemail-tool') | null = null;
 async function getLib() {
   if (!_lib) {
-    _lib = await import('caniemail');
+    _lib = await import('caniemail-tool');
   }
   return _lib;
 }

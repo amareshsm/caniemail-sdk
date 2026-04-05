@@ -1,6 +1,6 @@
 [![libera manifesto](https://img.shields.io/badge/libera-manifesto-lightgrey.svg)](https://liberamanifesto.com)
 
-# caniemail
+# caniemail-tool
 
 Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https://caniemail.com) — works in **Node.js** and **browsers**.
 
@@ -8,11 +8,11 @@ Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https:
 
 ## Environment Support
 
-| Environment                    | Format | Entry                              |
-| ------------------------------ | ------ | ---------------------------------- |
-| **Node.js** (≥20.19.0)         | ESM    | `dist/index.js`                    |
-| **Browser** (bundler)          | ESM    | `dist/browser/index.mjs`           |
-| **Browser** (CDN / `<script>`) | IIFE   | `dist/browser/caniemail.global.js` |
+| Environment                    | Format | Entry                                   |
+| ------------------------------ | ------ | --------------------------------------- |
+| **Node.js** (≥20.19.0)         | ESM    | `dist/index.js`                         |
+| **Browser** (bundler)          | ESM    | `dist/browser/index.mjs`                |
+| **Browser** (CDN / `<script>`) | IIFE   | `dist/browser/caniemail-tool.global.js` |
 
 ## Requirements
 
@@ -25,10 +25,10 @@ Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https:
 Install the package from npm using your favourite package manager:
 
 ```shell
-pnpm add caniemail
-# bun add caniemail
-# yarn add caniemail
-# npm add caniemail
+pnpm add caniemail-tool
+# bun add caniemail-tool
+# yarn add caniemail-tool
+# npm add caniemail-tool
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ pnpm add caniemail
 ### Node.js (ESM)
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const result = caniemail({
   clients: ['gmail.*', 'outlook.*'],
@@ -51,7 +51,7 @@ console.log(result.success); // false
 When using a bundler like Vite, webpack, or esbuild, the package automatically resolves to the browser build:
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const result = caniemail({
   clients: ['gmail.*'],
@@ -65,7 +65,7 @@ Use directly via unpkg or jsDelivr — no build step required:
 
 ```html
 <!-- IIFE global bundle -->
-<script src="https://unpkg.com/caniemail/dist/browser/caniemail.global.js"></script>
+<script src="https://unpkg.com/caniemail-tool/dist/browser/caniemail-tool.global.js"></script>
 <script>
   const result = CanIEmail.caniemail({
     clients: ['gmail.*', 'outlook.*'],
@@ -79,9 +79,9 @@ Or with ESM via CDN:
 
 ```html
 <script type="module">
-  import { caniemail } from 'https://esm.sh/caniemail';
+  import { caniemail } from 'https://esm.sh/caniemail-tool';
 
-  // or: import { caniemail } from 'https://cdn.jsdelivr.net/npm/caniemail/dist/browser/index.mjs';
+  // or: import { caniemail } from 'https://cdn.jsdelivr.net/npm/caniemail-tool/dist/browser/index.mjs';
 
   const result = caniemail({
     clients: ['gmail.*'],

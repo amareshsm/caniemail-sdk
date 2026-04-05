@@ -56,10 +56,10 @@ When you `import` caniemail:
 
 ```js
 // CommonJS (also works)
-const { caniemail, canIEmailScore } = require('caniemail');
+const { caniemail, canIEmailScore } = require('caniemail-tool');
 
 // ESM (recommended)
-import { caniemail, canIEmailScore } from 'caniemail';
+import { caniemail, canIEmailScore } from 'caniemail-tool';
 
 // Check compatibility
 const result = caniemail({
@@ -93,7 +93,7 @@ $ node -e "import('./dist/index.js').then(m => console.log('✅ Works'))"
 
 ```js
 // Vite / webpack / Rollup / esbuild
-import { caniemail, canIEmailScore } from 'caniemail';
+import { caniemail, canIEmailScore } from 'caniemail-tool';
 
 export async function checkEmail(html) {
   const result = caniemail({
@@ -131,7 +131,7 @@ In `package.json`:
 Then use in your components:
 ```jsx
 // React example
-import { canIEmailScore } from 'caniemail';
+import { canIEmailScore } from 'caniemail-tool';
 
 export function EmailScorer({ html }) {
   const [score, setScore] = useState(null);
@@ -155,10 +155,10 @@ export function EmailScorer({ html }) {
 
 ```html
 <!-- jsdelivr CDN -->
-<script src="https://cdn.jsdelivr.net/npm/caniemail/dist/browser/caniemail.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/caniemail-tool/dist/browser/caniemail.global.js"></script>
 
 <!-- unpkg CDN -->
-<script src="https://unpkg.com/caniemail/dist/browser/caniemail.global.js"></script>
+<script src="https://unpkg.com/caniemail-tool/dist/browser/caniemail.global.js"></script>
 
 <script>
   // CanIEmail is globally available
@@ -189,7 +189,7 @@ export function EmailScorer({ html }) {
 ```js
 // Load only when needed (lazy loading)
 async function checkEmail() {
-  const { caniemail } = await import('caniemail');
+  const { caniemail } = await import('caniemail-tool');
   
   const result = caniemail({
     clients: ['gmail.*', 'outlook.*'],
@@ -209,7 +209,7 @@ async function checkEmail() {
 The package automatically chooses the right build:
 
 ```
-import { caniemail } from 'caniemail'
+import { caniemail } from 'caniemail-tool'
                               ↓
          Does bundler field say "browser"?
          ├─ YES (webpack/Vite/Rollup) → dist/browser/index.mjs
@@ -225,7 +225,7 @@ You **never need to specify** which version — the package manager handles it.
 
 | Feature | Node.js | Browser | Notes |
 |---------|---------|---------|-------|
-| **Import** | `import { caniemail } from 'caniemail'` | Same | Automatic routing |
+| **Import** | `import { caniemail } from 'caniemail-tool'` | Same | Automatic routing |
 | **Size** | 1.6 KB (excluding JSON) | 900 KB–1.2 MB | JSON inlined in browser |
 | **Speed** | ⚡⚡⚡ Instant | ⚡⚡ Instant (no network) | Both instant |
 | **JSON Load** | `createRequire()` | Bundled inline | No filesystem access in browser |
@@ -306,7 +306,7 @@ npm install caniemail
 ```
 
 ```tsx
-import { canIEmailScore } from 'caniemail';
+import { canIEmailScore } from 'caniemail-tool';
 
 export default function Checker() {
   const [html, setHtml] = useState('');
@@ -334,7 +334,7 @@ export default function Checker() {
 ### Node.js / Express Server
 ```js
 import express from 'express';
-import { canIEmailScore } from 'caniemail';
+import { canIEmailScore } from 'caniemail-tool';
 import fs from 'fs';
 
 app.post('/check', (req, res) => {
@@ -355,7 +355,7 @@ app.post('/check', (req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/caniemail/dist/browser/caniemail.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/caniemail-tool/dist/browser/caniemail.global.js"></script>
 </head>
 <body>
   <textarea id="email-input" placeholder="Paste your HTML email here"></textarea>
@@ -419,7 +419,7 @@ app.post('/check', (req, res) => {
 
 ## 🔧 Troubleshooting
 
-### "Cannot find module 'caniemail' in browser"
+### "Cannot find module 'caniemail-tool' in browser"
 **Solution**: Make sure you're using a bundler (Vite, webpack, etc.) or the CDN version.
 
 ### "JSON not loading in browser"
@@ -432,7 +432,7 @@ app.post('/check', (req, res) => {
 **Expected**: Browser bundle is 900 KB–1.2 MB because it includes the entire `caniemail.json` database.
 
 **Options**:
-- Use dynamic import: `await import('caniemail')`
+- Use dynamic import: `await import('caniemail-tool')`
 - Use CDN (cached by browser)
 - Consider server-side scoring if size is critical
 

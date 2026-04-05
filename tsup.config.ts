@@ -39,7 +39,7 @@ export default defineConfig([
   },
   // Browser IIFE bundle — for <script> tag / CDN usage
   {
-    entry: { caniemail: 'src/index.ts' },
+    entry: { 'caniemail-tool': 'src/index.ts' },
     format: ['iife'],
     outDir: 'dist/browser',
     platform: 'browser',

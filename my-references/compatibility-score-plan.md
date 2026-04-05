@@ -445,7 +445,7 @@ interface CanIEmailScoreResult {
 ### Usage
 
 ```typescript
-import { canIEmailScore } from 'caniemail';
+import { canIEmailScore } from 'caniemail-tool';
 
 const result = canIEmailScore({
   clients: ['gmail.*', 'outlook.*'],

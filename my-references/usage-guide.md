@@ -47,7 +47,7 @@ bun add caniemail
 ## Quick Start
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const result = caniemail({
   clients: ['gmail.*', 'outlook.*'],
@@ -258,7 +258,7 @@ Save this as `my-email.html` — we'll reference it below.
 The most common use case — check a complete HTML email for compatibility issues.
 
 ```typescript
-import { caniemail, formatIssue } from 'caniemail';
+import { caniemail, formatIssue } from 'caniemail-tool';
 import { readFileSync } from 'node:fs';
 
 // 1. Read your email HTML
@@ -312,7 +312,7 @@ Compatible: false
 You can check standalone CSS without any HTML. Useful for validating shared stylesheets.
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const css = `
   .card {
@@ -351,7 +351,7 @@ for (const [client, issues] of result.issues.errors.entries()) {
 Check against only the exact clients your audience uses.
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const html = `
   <div style="display: flex; gap: 10px;">
@@ -383,7 +383,7 @@ if (!result.success) {
 The `clients` option supports powerful glob patterns via [micromatch](https://www.npmjs.com/package/micromatch).
 
 ```typescript
-import { caniemail } from 'caniemail';
+import { caniemail } from 'caniemail-tool';
 
 const html = '<div style="border-radius: 8px;">Hello</div>';
 
@@ -413,7 +413,7 @@ caniemail({
 The `formatIssue` helper generates human-readable messages, useful for logging, CI output, or reporting tools.
 
 ```typescript
-import { caniemail, formatIssue } from 'caniemail';
+import { caniemail, formatIssue } from 'caniemail-tool';
 
 const result = caniemail({
   clients: ['gmail.desktop-webmail', 'outlook.windows'],
@@ -456,7 +456,7 @@ ERROR: `filter` is not supported by `outlook.windows`
 Use `getAllFeatures` to retrieve **every** feature and its support status for given clients — useful for building dashboards or documentation.
 
 ```typescript
-import { getAllFeatures } from 'caniemail';
+import { getAllFeatures } from 'caniemail-tool';
 import { parseClients } from 'caniemail/dist/clients.js';
 
 // Get features for all Outlook clients
@@ -485,7 +485,7 @@ for (const [client, featureList] of features.unsupported.entries()) {
 When checking a full email, issues include **source positions** (line/column). Use `groupIssues` and `sortIssues` to organize them — great for editor integrations or annotated reports.
 
 ```typescript
-import { caniemail, groupIssues, sortIssues } from 'caniemail';
+import { caniemail, groupIssues, sortIssues } from 'caniemail-tool';
 import { readFileSync } from 'node:fs';
 
 const html = readFileSync('./my-email.html', 'utf-8');
@@ -603,7 +603,7 @@ These are commonly-used CSS/HTML features that fail on popular email clients:
 
 ```typescript
 // scripts/check-email.ts
-import { caniemail, formatIssue } from 'caniemail';
+import { caniemail, formatIssue } from 'caniemail-tool';
 import { readFileSync } from 'node:fs';
 
 const html = readFileSync('./dist/email.html', 'utf-8');
