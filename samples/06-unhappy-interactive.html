@@ -1,0 +1,275 @@
+<!doctype html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  SAMPLE 06 — Unhappy Flow: Interactive / AMP-Style Email                ║
+  ║                                                                          ║
+  ║  Expected score: ~76% C (Acceptable)                                    ║
+  ║  Issues flagged (errors):                                               ║
+  ║    ❌  CSS animations (@keyframes) — unsupported in Gmail, Outlook      ║
+  ║    ❌  display:flex — unsupported in Outlook Windows/Windows Mail       ║
+  ║    ❌  linear-gradient — no Outlook support                             ║
+  ║    ❌  :checked pseudo-selector — CSS interactivity not supported       ║
+  ║    ⚠️  @media (prefers-color-scheme) — limited support                 ║
+  ║    ⚠️  border-radius — stripped by Outlook                             ║
+  ║    ⚠️  input[type="radio"] hack — stripped by Gmail, Yahoo             ║
+  ║                                                                          ║
+  ║  Real-world consequence: Interactivity completely fails in most clients ║
+  ║  Lesson: CSS-only interactivity is Apple Mail / Outlook.com only        ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Survey — How are we doing?</title>
+
+    <style>
+      /* ❌ @keyframes — stripped by Gmail, Outlook, Yahoo */
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50%       { transform: scale(1.05); }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ❌ :checked pseudo-selector used for interactive tabs */
+      input[type="radio"] { display: none; }
+
+      input[type="radio"]:checked + label {
+        background: #4f46e5;
+        color: white;
+      }
+
+      /* ⚠️ @media for responsive */
+      @media only screen and (max-width: 600px) {
+        .wrapper { width: 100% !important; }
+        .rating-row td { display: block !important; width: 100% !important; }
+      }
+
+      /* ⚠️ Dark mode */
+      @media (prefers-color-scheme: dark) {
+        .email-bg   { background: #0f172a !important; }
+        .email-card { background: #1e293b !important; }
+      }
+    </style>
+  </head>
+  <body class="email-bg" style="margin: 0; padding: 0; background-color: #f0f4ff;">
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="background-color: #f0f4ff;">
+      <tr>
+        <td align="center" style="padding: 32px 16px;">
+          <table class="email-card" width="600" cellpadding="0" cellspacing="0" border="0"
+                 style="background-color: #ffffff; border-radius: 16px; overflow: hidden;">
+            <!-- ⚠️ border-radius on table: ignored by Outlook -->
+
+            <!-- ── HEADER ────────────────────────────────────────────── -->
+            <tr>
+              <td align="center"
+                  style="background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                         background-color: #4f46e5;
+                         padding: 40px 32px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 28px;
+                                font-weight: bold;
+                                color: #ffffff;
+                                text-align: center;
+                                padding: 0 0 8px;">
+                      How are we doing? 🙋
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 15px;
+                                color: rgba(255,255,255,0.85);
+                                text-align: center;">
+                      Your feedback shapes our product
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── QUESTION ───────────────────────────────────────────── -->
+            <tr>
+              <td align="center" style="padding: 40px 32px 24px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 18px;
+                                font-weight: bold;
+                                color: #1e293b;
+                                text-align: center;
+                                padding: 0 0 24px;">
+                      How satisfied are you with your recent experience?
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── RADIO INTERACTION (❌ stripped by most clients) ────── -->
+            <tr>
+              <td align="center" style="padding: 0 32px 32px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="padding: 4px;">
+                      <!--
+                        ❌ input[type="radio"] + :checked CSS trick
+                        Works ONLY in Apple Mail and Outlook.com.
+                        Gmail, Yahoo, Outlook Desktop all strip <input> tags.
+                        For real surveys, always link to an external form.
+                      -->
+                      <input type="radio" id="r-love" name="rating" />
+                      <label for="r-love"
+                             style="display: inline-block;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #4f46e5;
+                                    background: #eef2ff;
+                                    padding: 10px 18px;
+                                    border-radius: 20px;
+                                    cursor: pointer;
+                                    font-weight: bold;">
+                        😍 Love it
+                      </label>
+                    </td>
+                    <td style="padding: 4px;">
+                      <input type="radio" id="r-good" name="rating" />
+                      <label for="r-good"
+                             style="display: inline-block;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #16a34a;
+                                    background: #f0fdf4;
+                                    padding: 10px 18px;
+                                    border-radius: 20px;
+                                    cursor: pointer;
+                                    font-weight: bold;">
+                        😊 Good
+                      </label>
+                    </td>
+                    <td style="padding: 4px;">
+                      <input type="radio" id="r-ok" name="rating" />
+                      <label for="r-ok"
+                             style="display: inline-block;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #ea580c;
+                                    background: #fff7ed;
+                                    padding: 10px 18px;
+                                    border-radius: 20px;
+                                    cursor: pointer;
+                                    font-weight: bold;">
+                        😐 OK
+                      </label>
+                    </td>
+                    <td style="padding: 4px;">
+                      <input type="radio" id="r-poor" name="rating" />
+                      <label for="r-poor"
+                             style="display: inline-block;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    color: #dc2626;
+                                    background: #fef2f2;
+                                    padding: 10px 18px;
+                                    border-radius: 20px;
+                                    cursor: pointer;
+                                    font-weight: bold;">
+                        😞 Poor
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── FALLBACK LINK (for clients that strip the form) ────── -->
+            <tr>
+              <td align="center" style="padding: 0 32px 16px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 13px;
+                                color: #94a3b8;
+                                text-align: center;">
+                      Interactive rating not working?
+                      <a href="https://example.com/survey/123"
+                         style="color: #4f46e5; text-decoration: none; font-weight: bold;">
+                        Click here to open the survey
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── ANIMATED SECTION (❌ animations stripped) ──────────── -->
+            <tr>
+              <td style="padding: 16px 32px 40px;">
+                <!--
+                  ❌ animation property below is ignored in Gmail, Outlook, Yahoo.
+                  Only Apple Mail partially supports it.
+                -->
+                <div style="display: flex;
+                             align-items: center;
+                             gap: 16px;
+                             background: linear-gradient(135deg, #fef3c7, #fde68a);
+                             background-color: #fef3c7;
+                             padding: 20px;
+                             border-radius: 10px;
+                             animation: pulse 2s infinite;">
+                  <!-- ❌ display:flex, gap, animation — all problematic -->
+                  <div style="font-size: 28px; flex-shrink: 0;">💡</div>
+                  <div>
+                    <p style="font-family: Arial, sans-serif;
+                               font-size: 14px;
+                               font-weight: bold;
+                               color: #92400e;
+                               margin: 0 0 4px;">
+                      Did you know?
+                    </p>
+                    <p style="font-family: Arial, sans-serif;
+                               font-size: 13px;
+                               color: #78350f;
+                               margin: 0;
+                               line-height: 1.5;">
+                      Emails with feedback surveys have 3× higher engagement.
+                    </p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- ── FOOTER ─────────────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 20px 32px;
+                          background-color: #f8fafc;
+                          text-align: center;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 12px;
+                                color: #94a3b8;
+                                text-align: center;
+                                line-height: 20px;">
+                      &copy; 2024 Acme. &nbsp;
+                      <a href="#" style="color: #4f46e5; text-decoration: none;">Unsubscribe</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

@@ -9,6 +9,7 @@ import { parseCss, parseHtml } from './helpers.js';
 
 export * from './helpers.js';
 export { getAllFeatures, rawData } from './features.js';
+export * from './scoring/index.js';
 
 export interface CanIEmailOptions {
   /**

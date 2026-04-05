@@ -1,0 +1,269 @@
+<!doctype html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  SAMPLE 05 — Unhappy Flow: Modern CSS / Flexbox Email                   ║
+  ║                                                                          ║
+  ║  Expected score: ~74% C (Acceptable, borderline Poor)                   ║
+  ║  Issues flagged (errors):                                               ║
+  ║    ❌  display:grid — unsupported in Outlook, Gmail Android, Yahoo      ║
+  ║    ❌  display:flex — unsupported in Outlook Windows & Windows Mail     ║
+  ║    ❌  gap / column-gap — not supported in email clients                ║
+  ║    ❌  align-items / justify-content — Outlook ignores entirely         ║
+  ║    ⚠️  border-radius — stripped by Outlook on Windows                  ║
+  ║    ⚠️  linear-gradient — no Outlook support                            ║
+  ║    ⚠️  @media — not supported in Gmail app                             ║
+  ║                                                                          ║
+  ║  Real-world consequence: Layout completely collapses in Outlook         ║
+  ║  Lesson: If you use flexbox/grid, you NEED a VML/table fallback         ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Digest — CSS Grid Layout</title>
+
+    <style>
+      /* ⚠️ @media responsive */
+      @media only screen and (max-width: 600px) {
+        .wrapper { width: 100% !important; padding: 16px !important; }
+        .grid-2col { grid-template-columns: 1fr !important; }
+      }
+
+      /* ⚠️ dark mode — only Apple Mail & newer Gmail honor this */
+      @media (prefers-color-scheme: dark) {
+        .email-bg   { background-color: #0f172a !important; }
+        .email-card { background-color: #1e293b !important; color: #e2e8f0 !important; }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f0f4ff;">
+
+    <div class="email-bg" style="background-color: #f0f4ff; padding: 24px 0;">
+      <div class="wrapper email-card"
+           style="max-width: 600px;
+                  margin: 0 auto;
+                  background: #ffffff;
+                  border-radius: 16px;
+                  overflow: hidden;">
+        <!-- ⚠️ border-radius & overflow on a <div> — Outlook ignores both -->
+
+        <!-- ── HEADER ──────────────────────────────────────────────────── -->
+        <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+                    background-color: #6366f1;
+                    padding: 48px 32px;
+                    text-align: center;">
+          <!-- ⚠️ gradient — ignored by Outlook, falls back to solid bg -->
+          <p style="font-family: Arial, sans-serif;
+                     font-size: 13px;
+                     color: rgba(255,255,255,0.7);
+                     text-transform: uppercase;
+                     letter-spacing: 3px;
+                     margin: 0 0 8px;">
+            Weekly Newsletter
+          </p>
+          <h1 style="font-family: Arial, sans-serif;
+                      font-size: 32px;
+                      color: #ffffff;
+                      margin: 0 0 8px;">
+            Design Digest
+          </h1>
+          <p style="font-family: Arial, sans-serif;
+                     font-size: 15px;
+                     color: rgba(255,255,255,0.85);
+                     margin: 0;">
+            Your weekly dose of design inspiration
+          </p>
+        </div>
+
+        <!-- ── INTRO ──────────────────────────────────────────────────── -->
+        <div style="padding: 32px 32px 16px;">
+          <p style="font-family: Arial, sans-serif;
+                     font-size: 16px;
+                     color: #334155;
+                     line-height: 1.7;
+                     margin: 0;">
+            This week we're exploring the intersection of motion design,
+            AI-generated art, and sustainable UX. Let's dive in.
+          </p>
+        </div>
+
+        <!-- ── CSS GRID LAYOUT (❌ will break in Outlook) ──────────────── -->
+        <div style="padding: 16px 32px 24px;">
+          <div class="grid-2col"
+               style="display: grid;
+                      grid-template-columns: 1fr 1fr;
+                      gap: 16px;">
+            <!-- ❌ display:grid — NOT supported in Outlook/Yahoo/Gmail Android -->
+            <!-- ❌ gap — ignored in nearly all email clients -->
+
+            <!-- Card 1 -->
+            <div style="background: #f0f4ff;
+                        padding: 20px;
+                        border-radius: 10px;">
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 11px;
+                         font-weight: bold;
+                         color: #6366f1;
+                         text-transform: uppercase;
+                         margin: 0 0 6px;">Motion</p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 15px;
+                         font-weight: bold;
+                         color: #1e293b;
+                         margin: 0 0 6px;">
+                Micro-animations that delight
+              </p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 13px;
+                         color: #64748b;
+                         line-height: 1.6;
+                         margin: 0;">
+                Tiny movements that guide users through complex flows.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div style="background: #fdf4ff;
+                        padding: 20px;
+                        border-radius: 10px;">
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 11px;
+                         font-weight: bold;
+                         color: #8b5cf6;
+                         text-transform: uppercase;
+                         margin: 0 0 6px;">AI Art</p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 15px;
+                         font-weight: bold;
+                         color: #1e293b;
+                         margin: 0 0 6px;">
+                Generative assets in production
+              </p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 13px;
+                         color: #64748b;
+                         line-height: 1.6;
+                         margin: 0;">
+                How design teams are integrating AI into real workflows.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div style="background: #f0fdf4;
+                        padding: 20px;
+                        border-radius: 10px;">
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 11px;
+                         font-weight: bold;
+                         color: #16a34a;
+                         text-transform: uppercase;
+                         margin: 0 0 6px;">Sustainability</p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 15px;
+                         font-weight: bold;
+                         color: #1e293b;
+                         margin: 0 0 6px;">
+                Low-carbon design systems
+              </p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 13px;
+                         color: #64748b;
+                         line-height: 1.6;
+                         margin: 0;">
+                Why font choices matter more than you think.
+              </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div style="background: #fff7ed;
+                        padding: 20px;
+                        border-radius: 10px;">
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 11px;
+                         font-weight: bold;
+                         color: #ea580c;
+                         text-transform: uppercase;
+                         margin: 0 0 6px;">Tools</p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 15px;
+                         font-weight: bold;
+                         color: #1e293b;
+                         margin: 0 0 6px;">
+                Figma variables hit v1.0
+              </p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 13px;
+                         color: #64748b;
+                         line-height: 1.6;
+                         margin: 0;">
+                A deep dive into what's changed and what it means for tokens.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── FLEXBOX ROW (❌ breaks in Outlook) ──────────────────────── -->
+        <div style="padding: 0 32px 32px;">
+          <div style="display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      gap: 12px;
+                      background: linear-gradient(to right, #fef3c7, #fff7ed);
+                      background-color: #fef3c7;
+                      padding: 20px;
+                      border-radius: 10px;">
+            <!-- ❌ display:flex + align-items + justify-content — Outlook fails -->
+            <!-- ❌ gap — not email-safe -->
+            <div>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 15px;
+                         font-weight: bold;
+                         color: #92400e;
+                         margin: 0 0 4px;">
+                🎯 Tip of the Week
+              </p>
+              <p style="font-family: Arial, sans-serif;
+                         font-size: 14px;
+                         color: #78350f;
+                         margin: 0;
+                         line-height: 1.5;">
+                Always test in Outlook before shipping a flexbox layout.
+              </p>
+            </div>
+            <div style="flex-shrink: 0;">
+              <a href="#"
+                 style="display: inline-block;
+                        background-color: #f59e0b;
+                        color: #ffffff;
+                        font-family: Arial, sans-serif;
+                        font-size: 13px;
+                        font-weight: bold;
+                        padding: 10px 20px;
+                        border-radius: 6px;
+                        text-decoration: none;">
+                Read
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+        <div style="background-color: #f8fafc;
+                    padding: 20px 32px;
+                    text-align: center;">
+          <p style="font-family: Arial, sans-serif;
+                     font-size: 12px;
+                     color: #94a3b8;
+                     margin: 0;
+                     line-height: 20px;">
+            &copy; 2024 Design Digest &nbsp;·&nbsp;
+            <a href="#" style="color: #6366f1; text-decoration: none;">Unsubscribe</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

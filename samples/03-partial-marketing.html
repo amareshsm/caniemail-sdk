@@ -1,0 +1,312 @@
+<!doctype html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  SAMPLE 03 — Partial Flow: Marketing Email with Media Queries           ║
+  ║                                                                          ║
+  ║  Expected score: ~79% C (Acceptable)                                    ║
+  ║  Issues flagged (warnings/errors):                                      ║
+  ║    ⚠️  @media query — not supported in Gmail iOS, some Outlook versions  ║
+  ║    ⚠️  border-radius — stripped by Outlook on Windows                   ║
+  ║    ⚠️  display:flex — unsupported in Outlook, Yahoo Mail                ║
+  ║    ⚠️  linear-gradient — limited Outlook support                        ║
+  ║    ✅  Table fallback layout works for Outlook                           ║
+  ║    ✅  Inline styles ensure baseline rendering everywhere                ║
+  ║                                                                          ║
+  ║  Real-world use: Newsletter, promotional campaign                        ║
+  ║  Lesson: Media queries + flexbox + gradients = partial breakage          ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summer Sale — 50% Off</title>
+
+    <style>
+      /* ⚠️ @media — not supported in Gmail app, some Outlook versions */
+      @media only screen and (max-width: 600px) {
+        .container { width: 100% !important; }
+        .hero-title { font-size: 22px !important; }
+        .two-col td { display: block !important; width: 100% !important; }
+        .hide-mobile { display: none !important; }
+        .show-mobile { display: block !important; }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f0f4ff;">
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="background-color: #f0f4ff;">
+      <tr>
+        <td align="center" style="padding: 24px 16px;">
+          <table class="container" width="600" cellpadding="0" cellspacing="0" border="0"
+                 style="background-color: #ffffff;">
+
+            <!-- ── HERO with gradient (⚠️ gradient may not render in Outlook) -->
+            <tr>
+              <td align="center"
+                  style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                         background-color: #667eea;
+                         padding: 48px 32px;
+                         border-radius: 8px 8px 0 0;">
+                <!-- ⚠️ border-radius ignored by Outlook on Windows -->
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="hero-title"
+                        style="font-family: Arial, sans-serif;
+                               font-size: 32px;
+                               font-weight: bold;
+                               color: #ffffff;
+                               text-align: center;
+                               padding: 0 0 12px;">
+                      ☀️ Summer Sale
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 18px;
+                                color: rgba(255,255,255,0.9);
+                                text-align: center;
+                                padding: 0 0 24px;">
+                      Up to <strong>50% off</strong> everything
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="background-color: #ffffff;
+                                      padding: 12px 32px;
+                                      border-radius: 4px;">
+                            <!-- ⚠️ border-radius stripped by Outlook -->
+                            <a href="https://example.com/sale"
+                               style="font-family: Arial, sans-serif;
+                                      font-size: 16px;
+                                      font-weight: bold;
+                                      color: #667eea;
+                                      text-decoration: none;
+                                      display: inline-block;">
+                              Shop Now →
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── STATS BAR (uses display:flex in some clients) ────── -->
+            <tr>
+              <td style="padding: 24px 32px; background-color: #fafafa;">
+                <!--
+                  ⚠️ display:flex is used below via a <div> fallback for
+                  modern clients. Outlook will ignore flex and fall back to
+                  the table-based layout.
+                -->
+                <table class="two-col" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td width="33%" align="center"
+                        style="padding: 12px 8px;">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                      color: #667eea;
+                                      text-align: center;">
+                            50%
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #888888;
+                                      text-align: center;">
+                            Max Discount
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td width="33%" align="center"
+                        style="padding: 12px 8px;
+                               border-left: 1px solid #e5e7eb;
+                               border-right: 1px solid #e5e7eb;">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                      color: #667eea;
+                                      text-align: center;">
+                            Free
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #888888;
+                                      text-align: center;">
+                            Shipping
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td width="33%" align="center"
+                        style="padding: 12px 8px;">
+                      <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                      color: #667eea;
+                                      text-align: center;">
+                            48h
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #888888;
+                                      text-align: center;">
+                            Sale Ends In
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── PRODUCT GRID ───────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 24px 32px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <!-- Product 1 -->
+                    <td width="48%" valign="top"
+                        style="background-color: #f8f9fa;
+                               padding: 16px;
+                               border-radius: 8px;">
+                      <!-- ⚠️ border-radius stripped by Outlook -->
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td>
+                            <img src="https://via.placeholder.com/240x160/667eea/ffffff?text=Product+1"
+                                 width="240" height="160" alt="Product 1"
+                                 style="display: block; width: 100%; height: auto;" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 15px;
+                                      font-weight: bold;
+                                      color: #1a1a2e;
+                                      padding: 12px 0 4px;">
+                            Wireless Earbuds
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table cellpadding="0" cellspacing="0" border="0">
+                              <tr>
+                                <td style="font-family: Arial, sans-serif;
+                                            font-size: 14px;
+                                            color: #888888;
+                                            text-decoration: line-through;
+                                            padding: 0 8px 0 0;">
+                                  $79
+                                </td>
+                                <td style="font-family: Arial, sans-serif;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                            color: #16a34a;">
+                                  $39
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <!-- spacer -->
+                    <td width="4%"></td>
+                    <!-- Product 2 -->
+                    <td width="48%" valign="top"
+                        style="background-color: #f8f9fa;
+                               padding: 16px;
+                               border-radius: 8px;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td>
+                            <img src="https://via.placeholder.com/240x160/764ba2/ffffff?text=Product+2"
+                                 width="240" height="160" alt="Product 2"
+                                 style="display: block; width: 100%; height: auto;" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 15px;
+                                      font-weight: bold;
+                                      color: #1a1a2e;
+                                      padding: 12px 0 4px;">
+                            Smart Watch
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table cellpadding="0" cellspacing="0" border="0">
+                              <tr>
+                                <td style="font-family: Arial, sans-serif;
+                                            font-size: 14px;
+                                            color: #888888;
+                                            text-decoration: line-through;
+                                            padding: 0 8px 0 0;">
+                                  $199
+                                </td>
+                                <td style="font-family: Arial, sans-serif;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                            color: #16a34a;">
+                                  $99
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── FOOTER ─────────────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 24px 32px; text-align: center; background-color: #f8f9fa;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 12px;
+                                color: #aaaaaa;
+                                text-align: center;
+                                line-height: 20px;">
+                      &copy; 2024 Summer Store Inc. &nbsp;
+                      <a href="#" style="color: #667eea; text-decoration: none;">Unsubscribe</a>
+                      &nbsp;·&nbsp;
+                      <a href="#" style="color: #667eea; text-decoration: none;">View in browser</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

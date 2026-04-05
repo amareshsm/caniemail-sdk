@@ -1,0 +1,249 @@
+<!doctype html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  SAMPLE 01 — Happy Flow: Perfect Table-Based Email                      ║
+  ║                                                                          ║
+  ║  Expected score: ~87% B (Good)                                           ║
+  ║  Why it scores high:                                                     ║
+  ║    ✅ Table-based layout — works in all clients, including Outlook       ║
+  ║    ✅ All inline styles — no external/embedded CSS needed                ║
+  ║    ✅ No flexbox, grid, animations, or modern CSS                        ║
+  ║    ✅ Simple color properties (background-color, color, font-size, etc.) ║
+  ║    ✅ No media queries needed                                             ║
+  ║                                                                          ║
+  ║  Test with:                                                              ║
+  ║    import { canIEmailScore } from 'caniemail';                           ║
+  ║    const result = canIEmailScore({ clients: ['gmail.*','outlook.*'],     ║
+  ║                                    html: <this file's contents> });      ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Email – Table Layout</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f4f4f7;">
+
+    <!-- Outer wrapper table -->
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="background-color: #f4f4f7;">
+      <tr>
+        <td align="center" style="padding: 24px 0;">
+
+          <!-- Inner container (max 600px) -->
+          <table width="600" cellpadding="0" cellspacing="0" border="0"
+                 style="background-color: #ffffff;">
+
+            <!-- ── HEADER ────────────────────────────────────────────── -->
+            <tr>
+              <td align="center"
+                  style="background-color: #4f46e5; padding: 28px 24px;">
+                <img src="https://via.placeholder.com/160x44/ffffff/4f46e5?text=LOGO"
+                     width="160" height="44" alt="Company Logo"
+                     style="display: block; border: 0;" />
+              </td>
+            </tr>
+
+            <!-- ── HERO ──────────────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 40px 32px 24px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 26px;
+                                font-weight: bold;
+                                color: #1a1a2e;
+                                padding: 0 0 12px 0;">
+                      Welcome to Acme Corp 🎉
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 16px;
+                                color: #555555;
+                                line-height: 26px;
+                                padding: 0 0 28px 0;">
+                      Hi there! We're thrilled to have you on board.
+                      Your account is all set and ready to go. Here's
+                      everything you need to get started.
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── FEATURES (3 columns, table-based) ─────────────────── -->
+            <tr>
+              <td style="padding: 0 32px 32px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <!-- Feature 1 -->
+                    <td width="30%" valign="top"
+                        style="background-color: #f0f4ff;
+                               padding: 20px 14px;
+                               text-align: center;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-size: 28px; padding: 0 0 8px;">📦</td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 14px;
+                                      font-weight: bold;
+                                      color: #4f46e5;
+                                      padding: 0 0 6px;">
+                            Fast Delivery
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #777777;
+                                      line-height: 20px;">
+                            Ships within 24 hours
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <!-- spacer -->
+                    <td width="5%"></td>
+                    <!-- Feature 2 -->
+                    <td width="30%" valign="top"
+                        style="background-color: #f0fdf4;
+                               padding: 20px 14px;
+                               text-align: center;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-size: 28px; padding: 0 0 8px;">🔒</td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 14px;
+                                      font-weight: bold;
+                                      color: #16a34a;
+                                      padding: 0 0 6px;">
+                            Secure
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #777777;
+                                      line-height: 20px;">
+                            End-to-end encrypted
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <!-- spacer -->
+                    <td width="5%"></td>
+                    <!-- Feature 3 -->
+                    <td width="30%" valign="top"
+                        style="background-color: #fff7ed;
+                               padding: 20px 14px;
+                               text-align: center;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="font-size: 28px; padding: 0 0 8px;">💬</td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 14px;
+                                      font-weight: bold;
+                                      color: #ea580c;
+                                      padding: 0 0 6px;">
+                            24/7 Support
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="font-family: Arial, sans-serif;
+                                      font-size: 13px;
+                                      color: #777777;
+                                      line-height: 20px;">
+                            Always here for you
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── CTA BUTTON ──────────────────────────────────────────── -->
+            <tr>
+              <td align="center" style="padding: 0 32px 40px;">
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td align="center"
+                        style="background-color: #4f46e5; padding: 14px 40px;">
+                      <a href="https://example.com/dashboard"
+                         style="color: #ffffff;
+                                text-decoration: none;
+                                font-family: Arial, sans-serif;
+                                font-size: 16px;
+                                font-weight: bold;
+                                display: inline-block;">
+                        Go to Dashboard →
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── DIVIDER ─────────────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 0 32px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td height="1" style="background-color: #e5e7eb; font-size: 0;">
+                      &nbsp;
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ── FOOTER ─────────────────────────────────────────────── -->
+            <tr>
+              <td style="padding: 24px 32px;
+                          background-color: #f8f9fa;
+                          text-align: center;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 12px;
+                                color: #aaaaaa;
+                                text-align: center;
+                                padding: 0 0 8px;">
+                      Acme Corp · 123 Main Street · San Francisco, CA 94102
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: Arial, sans-serif;
+                                font-size: 12px;
+                                color: #aaaaaa;
+                                text-align: center;">
+                      <a href="https://example.com/unsubscribe"
+                         style="color: #4f46e5; text-decoration: none;">Unsubscribe</a>
+                      &nbsp;·&nbsp;
+                      <a href="https://example.com/privacy"
+                         style="color: #4f46e5; text-decoration: none;">Privacy Policy</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+          <!-- /Inner container -->
+
+        </td>
+      </tr>
+    </table>
+    <!-- /Outer wrapper -->
+
+  </body>
+</html>
