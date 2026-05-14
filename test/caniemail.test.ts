@@ -8,19 +8,19 @@ import { caniemail } from '../dist/index.js';
 describe('exports', () => {
   test('data', async () => {
     // @ts-ignore
-    const json = await import('caniemail-tool/caniemail.json');
+    const json = await import('caniemail-sdk/caniemail.json');
     expect(json).toBeTruthy();
   });
 
   test('package.json', async () => {
     // @ts-ignore
-    const json = await import('caniemail-tool/package.json');
+    const json = await import('caniemail-sdk/package.json');
     expect(json).toBeTruthy();
   });
 
   test('caniemail', async () => {
     // @ts-ignore
-    const caniemail = await import('caniemail-tool');
+    const caniemail = await import('caniemail-sdk');
     expect(caniemail).toBeTruthy();
   });
 });

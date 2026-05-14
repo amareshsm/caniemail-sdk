@@ -9,7 +9,7 @@ Open any file in your browser to preview, then run it through `canIEmailScore` t
 
 ```js
 import { readFileSync } from 'fs';
-import { canIEmailScore } from 'caniemail-tool';
+import { canIEmailScore } from 'caniemail-sdk';
 
 const html = readFileSync('./samples/01-happy-table-based.html', 'utf8');
 
@@ -81,7 +81,7 @@ Apple Mail uses **WebKit**, so it supports nearly all modern CSS including:
 Run with different presets to see audience-specific scores:
 
 ```js
-import { canIEmailScore } from 'caniemail-tool';
+import { canIEmailScore } from 'caniemail-sdk';
 
 const html = readFileSync('./samples/05-partial-flex-grid.html', 'utf8');
 

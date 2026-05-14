@@ -1,22 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import {
-  BarChart3,
-  Code2,
-  PanelLeft,
-  PanelLeftClose,
-  Play,
-  RotateCcw,
-  Settings2
-} from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Code2, PanelLeft, RotateCcw } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { ClientConfig } from '@/components/client-config';
 import { CodeEditor } from '@/components/code-editor';
 import { Header } from '@/components/header';
 import { ResultsPanel } from '@/components/results-panel';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useCanIEmail } from '@/hooks/use-caniemail';
 import { CLIENT_NAMES } from '@/lib/caniemail-types';
@@ -60,7 +50,7 @@ export default function App() {
   // Editor state
   const [htmlCode, setHtmlCode] = useState(() => loadFromStorage('caniemail-html', SAMPLE_EMAIL));
   const [editorTheme, setEditorTheme] = useState<EditorTheme>(() =>
-    loadFromStorage('caniemail-editor-theme', 'one-dark')
+    loadFromStorage('caniemail-editor-theme-v2', 'github')
   );
 
   // Client selection state
@@ -78,18 +68,13 @@ export default function App() {
     useCanIEmail();
 
   // Run check when debounced HTML or clients change
-  const isFirstRender = useRef(true);
   useEffect(() => {
-    // Always run on first render with sample code
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    }
     check(debouncedHtml, [...enabledClients]);
   }, [debouncedHtml, enabledClients, check]);
 
   // Persist state
   useEffect(() => saveToStorage('caniemail-html', htmlCode), [htmlCode]);
-  useEffect(() => saveToStorage('caniemail-editor-theme', editorTheme), [editorTheme]);
+  useEffect(() => saveToStorage('caniemail-editor-theme-v2', editorTheme), [editorTheme]);
   useEffect(() => saveToStorage('caniemail-clients', [...enabledClients]), [enabledClients]);
 
   // Client toggle handlers
@@ -105,141 +90,24 @@ export default function App() {
     });
   }, []);
 
-  const handleEnableAll = useCallback(() => {
-    setEnabledClients(new Set(CLIENT_NAMES));
+  const handleApplyPreset = useCallback((clients: readonly string[]) => {
+    setEnabledClients(new Set(clients));
   }, []);
 
-  const handleDisableAll = useCallback(() => {
-    setEnabledClients(new Set());
-  }, []);
-
-  // Reset to sample
-  const handleReset = useCallback(() => {
+  // Scoped resets
+  const handleResetHtml = useCallback(() => {
     setHtmlCode(SAMPLE_EMAIL);
-    setEnabledClients(new Set(CLIENT_NAMES));
   }, []);
 
-  // Manual check
-  const handleRunCheck = useCallback(() => {
-    check(htmlCode, [...enabledClients]);
-  }, [htmlCode, enabledClients, check]);
-
-  // Counts for header badges
-  const errorCount = groupedErrors.length;
-  const warningCount = groupedWarnings.length;
+  const handleResetClients = useCallback(() => {
+    setEnabledClients(new Set(CLIENT_NAMES));
+  }, []);
 
   return (
     <TooltipProvider delayDuration={300}>
       <div className="flex h-screen flex-col bg-background text-foreground">
         {/* Header */}
         <Header />
-
-        {/* Toolbar */}
-        <motion.div
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
-          className="flex items-center gap-2 border-b bg-card/50 px-4 py-2"
-        >
-          {/* Left: Editor theme selector */}
-          <div className="flex items-center gap-2">
-            <Code2 className="h-4 w-4 text-muted-foreground" />
-            <select
-              value={editorTheme}
-              onChange={(e) => setEditorTheme(e.target.value as EditorTheme)}
-              className="h-8 rounded-md border border-input bg-background px-2 text-sm outline-none focus:ring-2 focus:ring-ring"
-            >
-              {EDITOR_THEMES.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <Separator orientation="vertical" className="h-6" />
-
-          {/* Center: Action buttons */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="sm" onClick={handleRunCheck} disabled={isChecking} className="gap-1.5">
-                <Play className="h-3.5 w-3.5" />
-                Check
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Run compatibility check</TooltipContent>
-          </Tooltip>
-
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="sm" variant="outline" onClick={handleReset} className="gap-1.5">
-                <RotateCcw className="h-3.5 w-3.5" />
-                Reset
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Reset to sample email</TooltipContent>
-          </Tooltip>
-
-          <Separator orientation="vertical" className="h-6" />
-
-          {/* Status badges */}
-          <div className="flex items-center gap-1.5">
-            {result && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center gap-1.5"
-              >
-                {errorCount > 0 && (
-                  <Badge variant="destructive" className="gap-1 text-xs">
-                    {errorCount} {errorCount === 1 ? 'error' : 'errors'}
-                  </Badge>
-                )}
-                {warningCount > 0 && (
-                  <Badge variant="warning" className="gap-1 text-xs">
-                    {warningCount} {warningCount === 1 ? 'warning' : 'warnings'}
-                  </Badge>
-                )}
-                {errorCount === 0 && warningCount === 0 && (
-                  <Badge variant="success" className="gap-1 text-xs">
-                    All clear!
-                  </Badge>
-                )}
-              </motion.div>
-            )}
-            {isChecking && (
-              <Badge variant="secondary" className="gap-1 text-xs">
-                <BarChart3 className="h-3 w-3 animate-pulse" />
-                Checking…
-              </Badge>
-            )}
-          </div>
-
-          {/* Right: Client count & sidebar toggle */}
-          <div className="ml-auto flex items-center gap-2">
-            <Badge variant="outline" className="text-xs font-normal">
-              {enabledClients.size}/{CLIENT_NAMES.length} clients
-            </Badge>
-
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => setShowSidebar(!showSidebar)}
-                  className="h-8 w-8 p-0"
-                >
-                  {showSidebar ? (
-                    <PanelLeftClose className="h-4 w-4" />
-                  ) : (
-                    <PanelLeft className="h-4 w-4" />
-                  )}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{showSidebar ? 'Hide' : 'Show'} client panel</TooltipContent>
-            </Tooltip>
-          </div>
-        </motion.div>
 
         {/* Main Content */}
         <div className="flex flex-1 overflow-hidden">
@@ -253,15 +121,12 @@ export default function App() {
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
                 className="flex flex-col overflow-hidden border-r bg-card/30"
               >
-                <div className="flex items-center gap-2 border-b px-3 py-2">
-                  <Settings2 className="h-4 w-4 text-muted-foreground" />
-                  <h2 className="text-sm font-medium">Email Clients</h2>
-                </div>
                 <ClientConfig
                   enabledClients={enabledClients}
                   onToggleClient={handleToggleClient}
-                  onEnableAll={handleEnableAll}
-                  onDisableAll={handleDisableAll}
+                  onApplyPreset={handleApplyPreset}
+                  onReset={handleResetClients}
+                  onCollapse={() => setShowSidebar(false)}
                 />
               </motion.aside>
             )}
@@ -274,9 +139,53 @@ export default function App() {
             className="flex flex-1 flex-col overflow-hidden"
           >
             <div className="flex items-center gap-2 border-b px-3 py-2">
+              {!showSidebar && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => setShowSidebar(true)}
+                      className="h-7 w-7 p-0"
+                    >
+                      <PanelLeft className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Show client panel</TooltipContent>
+                </Tooltip>
+              )}
               <Code2 className="h-4 w-4 text-muted-foreground" />
               <h2 className="text-sm font-medium">HTML Email Code</h2>
               <span className="text-xs text-muted-foreground">— paste or edit your email HTML</span>
+
+              <div className="ml-auto flex items-center gap-1.5">
+                <select
+                  value={editorTheme}
+                  onChange={(e) => setEditorTheme(e.target.value as EditorTheme)}
+                  className="h-7 rounded-md border border-input bg-background px-2 text-xs outline-none focus:ring-2 focus:ring-ring"
+                  aria-label="Editor theme"
+                >
+                  {EDITOR_THEMES.map((t) => (
+                    <option key={t.value} value={t.value}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={handleResetHtml}
+                      className="h-7 gap-1.5 px-2 text-xs"
+                    >
+                      <RotateCcw className="h-3 w-3" />
+                      Reset to default
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Reset HTML to sample email</TooltipContent>
+                </Tooltip>
+              </div>
             </div>
             <CodeEditor
               value={htmlCode}

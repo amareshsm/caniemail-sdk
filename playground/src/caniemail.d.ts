@@ -1,4 +1,4 @@
-declare module 'caniemail-tool' {
+declare module 'caniemail-sdk' {
   export interface FeatureIssue {
     title: string;
     support: 'full' | 'partial' | 'none';

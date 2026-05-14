@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Moon, Sun } from 'lucide-react';
+import { Moon, ShieldCheck, Sun } from 'lucide-react';
 
 import { useTheme } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
@@ -24,12 +24,25 @@ export function Header() {
       className="flex items-center justify-between border-b border-border bg-background/80 backdrop-blur-md px-6 py-3 sticky top-0 z-50"
     >
       <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-linear-to-br from-indigo-500 to-purple-600 shadow-md">
-          <Mail className="w-4 h-4 text-white" />
+        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-50 ring-1 ring-emerald-200/70 dark:bg-emerald-950/40 dark:ring-emerald-800/50">
+          <ShieldCheck
+            className="w-[18px] h-[18px] text-emerald-600 dark:text-emerald-400"
+            strokeWidth={2.25}
+          />
         </div>
         <div>
           <h1 className="text-base font-semibold tracking-tight">Can I Email</h1>
-          <p className="text-[11px] text-muted-foreground leading-none">Interactive Playground</p>
+          <p className="text-[11px] text-muted-foreground leading-none">
+            Interactive Playground · Data from{' '}
+            <a
+              href="https://www.caniemail.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-dotted underline-offset-2 hover:text-foreground"
+            >
+              caniemail.com
+            </a>
+          </p>
         </div>
       </div>
 

@@ -1,44 +1,31 @@
-# caniemail-tool ChangeLog
-
-## v2.0.0
-
-_2026-04-05_
-
-### Breaking Changes
-
-- Package renamed from `caniemail` to `caniemail-tool`
-- Requires Node.js ≥20.19.0
-
-### New Features
-
-- **Browser support** — dual ESM + IIFE builds via tsup; works in Vite, webpack, esbuild, and `<script>` CDN tags with JSON data inlined into bundle
-- **`canIEmailScore()`** — weighted compatibility scoring system producing a 0–100% score with letter grade (A+→F), per-client breakdowns, feature severity classification, usage multiplier, and partial-only dampening
-- **Scoring presets** — `global`, `enterprise`, `consumer`, `mobile-first` audience profiles
-- **Interactive playground** — React + Vite app for live email compatibility testing
-
-### Updates
-
-- `v1.0.1` → `v1.0.5`: caniemail.json data updates (upstream)
+# caniemail-sdk ChangeLog
 
 ## v1.0.0
 
-_2025-04-28_
+_2026-05-14_
 
-### Breaking Changes
+### Initial release
 
-- feat!: v1.0.0 (#2)
+`caniemail-sdk` is a fresh package — a fork and successor of [shellscape/caniemail](https://github.com/shellscape/caniemail). Email compatibility data is sourced from [caniemail.com](https://www.caniemail.com/).
 
-### Updates
+### Features
 
-- Manual run publish (52d6591)
-- readme (356f4b2)
-- reset (4917d32)
-- test (01d3562)
-- github identity (777ed57)
-- pull latest tag from npm (e67c9cb)
-- Merge branch 'main' of github.com:useparcel/caniemail into main (b497aea)
-- fixed git command (d40d5df)
-- Update npm-publish.yml (dbd6c85)
-- Update npm-publish.yml (1667421)
-- Create npm-publish.yml (f20a295)
-- init (a937936)
+- **HTML/CSS compatibility checking** — `caniemail()` lints email markup against feature support data for 32+ email clients
+- **Browser + Node.js support** — dual ESM + IIFE builds; works in Node.js (≥20.19.0), modern bundlers (Vite, webpack, esbuild), and `<script>` CDN tags with JSON data inlined into the bundle
+- **`canIEmailScore()`** — weighted compatibility scoring producing a 0–100% score with letter grade (A+→F), per-client breakdowns, feature severity classification, usage multiplier, and partial-only dampening
+- **Scoring presets** — `global`, `enterprise`, `consumer`, `mobile-first` audience profiles
+- **Interactive playground** — React + Vite app for live email compatibility testing with client preset filters, theme support, and real-time linting
+
+### Requirements
+
+- Node.js ≥20.19.0
+- Any modern browser (ES2020+); no polyfills needed
+
+---
+
+## Pre-rename history (as `caniemail` / `caniemail-tool`)
+
+Earlier releases under the previous package names are preserved here for transparency. The data and core API remained compatible across the rename to `caniemail-sdk`.
+
+- Data updates from caniemail.com (upstream sync)
+- Initial fork from [useparcel/caniemail](https://github.com/useparcel/caniemail)

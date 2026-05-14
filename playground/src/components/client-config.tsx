@@ -1,13 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Check, ChevronDown, X } from 'lucide-react';
-import { useState } from 'react';
+import { Check, ChevronDown, PanelLeftClose, RotateCcw } from 'lucide-react';
+import { useMemo, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Switch } from '@/components/ui/switch';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import {
   CLIENT_NAMES,
+  CLIENT_PRESETS,
   PLATFORM_LABELS,
   PROVIDER_META,
   groupClientsByProvider
@@ -16,21 +18,34 @@ import {
 interface ClientConfigProps {
   enabledClients: Set<string>;
   onToggleClient: (client: string) => void;
-  onEnableAll: () => void;
-  onDisableAll: () => void;
+  onApplyPreset: (clients: readonly string[]) => void;
+  onReset: () => void;
+  onCollapse: () => void;
+}
+
+function setsMatch(a: Set<string>, b: readonly string[]): boolean {
+  if (a.size !== b.length) return false;
+  for (const item of b) if (!a.has(item)) return false;
+  return true;
 }
 
 export function ClientConfig({
   enabledClients,
   onToggleClient,
-  onEnableAll,
-  onDisableAll
+  onApplyPreset,
+  onReset,
+  onCollapse
 }: ClientConfigProps) {
   const [expandedProviders, setExpandedProviders] = useState<Set<string>>(new Set());
 
   const groups = groupClientsByProvider([...CLIENT_NAMES]);
   const totalEnabled = enabledClients.size;
   const totalClients = CLIENT_NAMES.length;
+
+  const activePresetId = useMemo(
+    () => CLIENT_PRESETS.find((p) => setsMatch(enabledClients, p.clients))?.id,
+    [enabledClients]
+  );
 
   const toggleProvider = (provider: string) => {
     setExpandedProviders((prev) => {
@@ -59,22 +74,56 @@ export function ClientConfig({
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-        <div className="flex items-center gap-2">
-          <h3 className="text-sm font-semibold">Email Clients</h3>
-          <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
-            {totalEnabled}/{totalClients}
-          </Badge>
+      <div className="border-b border-border px-3 py-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h3 className="text-sm font-semibold">Email Clients</h3>
+            <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+              {totalEnabled}/{totalClients}
+            </Badge>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onCollapse}
+            className="h-7 w-7 p-0"
+            aria-label="Collapse panel"
+          >
+            <PanelLeftClose className="w-4 h-4" />
+          </Button>
         </div>
-        <div className="flex gap-1">
-          <Button variant="ghost" size="sm" className="h-7 text-xs px-2" onClick={onEnableAll}>
-            <Check className="w-3 h-3 mr-1" />
-            All
-          </Button>
-          <Button variant="ghost" size="sm" className="h-7 text-xs px-2" onClick={onDisableAll}>
-            <X className="w-3 h-3 mr-1" />
-            None
-          </Button>
+        <div className="mt-2">
+          <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mb-1.5">
+            Presets
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {CLIENT_PRESETS.map((preset) => {
+              const isActive = preset.id === activePresetId;
+              return (
+                <Tooltip key={preset.id}>
+                  <TooltipTrigger asChild>
+                    <button
+                      type="button"
+                      onClick={() => onApplyPreset(preset.clients)}
+                      className={`h-6 rounded-full px-2.5 text-[11px] font-medium transition-colors cursor-pointer ${
+                        isActive
+                          ? 'bg-primary text-primary-foreground shadow-sm'
+                          : 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
+                      }`}
+                    >
+                      {preset.label}
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-[220px]">
+                    <p className="text-xs">{preset.description}</p>
+                    <p className="text-[10px] text-muted-foreground mt-0.5">
+                      {preset.clients.length} client{preset.clients.length === 1 ? '' : 's'}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -183,6 +232,19 @@ export function ClientConfig({
           })}
         </div>
       </ScrollArea>
+
+      {/* Footer */}
+      <div className="border-t border-border px-3 py-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onReset}
+          className="h-8 w-full justify-center gap-1.5 text-xs"
+        >
+          <RotateCcw className="w-3 h-3" />
+          Reset to default
+        </Button>
+      </div>
     </div>
   );
 }

@@ -41,7 +41,7 @@ export { getPresetWeights } from './presets.js';
  *
  * @example
  * ```ts
- * import { canIEmailScore } from 'caniemail-tool';
+ * import { canIEmailScore } from 'caniemail-sdk';
  *
  * const result = canIEmailScore({
  *   clients: ['gmail.*', 'outlook.*'],

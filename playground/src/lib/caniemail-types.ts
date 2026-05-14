@@ -122,6 +122,93 @@ export const PLATFORM_LABELS: Record<string, string> = {
   'mobile-webmail': 'Mobile Web'
 };
 
+// Client selection presets — applied via the sidebar preset bar
+export interface ClientPreset {
+  id: string;
+  label: string;
+  description: string;
+  clients: readonly string[];
+}
+
+const MODERN_CLIENTS: readonly string[] = [
+  'apple-mail.macos',
+  'apple-mail.ios',
+  'gmail.desktop-webmail',
+  'gmail.ios',
+  'gmail.android',
+  'gmail.mobile-webmail',
+  'outlook.macos',
+  'outlook.ios',
+  'outlook.android',
+  'outlook.windows-mail',
+  'yahoo.desktop-webmail',
+  'yahoo.ios',
+  'yahoo.android',
+  'samsung-email.android',
+  'thunderbird.macos',
+  'protonmail.desktop-webmail',
+  'protonmail.ios',
+  'protonmail.android',
+  'fastmail.desktop-webmail'
+];
+
+const POPULAR_CLIENTS: readonly string[] = [
+  'apple-mail.macos',
+  'apple-mail.ios',
+  'gmail.desktop-webmail',
+  'gmail.ios',
+  'gmail.android',
+  'gmail.mobile-webmail',
+  'outlook.windows',
+  'outlook.windows-mail',
+  'outlook.macos',
+  'outlook.ios',
+  'outlook.android',
+  'yahoo.desktop-webmail',
+  'yahoo.ios',
+  'yahoo.android'
+];
+
+const MOBILE_PLATFORMS = new Set(['ios', 'android', 'mobile-webmail']);
+const DESKTOP_PLATFORMS = new Set(['macos', 'windows', 'windows-mail', 'desktop-webmail']);
+
+const MOBILE_CLIENTS: readonly string[] = CLIENT_NAMES.filter((name) =>
+  MOBILE_PLATFORMS.has(name.split('.')[1])
+);
+const DESKTOP_CLIENTS: readonly string[] = CLIENT_NAMES.filter((name) =>
+  DESKTOP_PLATFORMS.has(name.split('.')[1])
+);
+
+export const CLIENT_PRESETS: readonly ClientPreset[] = [
+  { id: 'all', label: 'All', description: 'Every supported client', clients: CLIENT_NAMES },
+  { id: 'none', label: 'None', description: 'Clear selection', clients: [] },
+  {
+    id: 'modern',
+    label: 'Modern',
+    description:
+      'Clients with strong modern CSS support (excludes Outlook Windows Word engine and legacy webmails)',
+    clients: MODERN_CLIENTS
+  },
+  {
+    id: 'popular',
+    label: 'Popular',
+    description: 'The big four: Gmail, Apple Mail, Outlook, Yahoo — every platform',
+    clients: POPULAR_CLIENTS
+  },
+  {
+    id: 'mobile',
+    label: 'Mobile',
+    description: 'iOS, Android, and mobile webmail',
+    clients: MOBILE_CLIENTS
+  },
+  {
+    id: 'desktop',
+    label: 'Desktop',
+    description: 'macOS, Windows, and desktop webmail',
+    clients: DESKTOP_CLIENTS
+  }
+];
+
 export function parseClientName(name: string): ClientInfo {
   const [provider, platform] = name.split('.');
   const meta = PROVIDER_META[provider] ?? {

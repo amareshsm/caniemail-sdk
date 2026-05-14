@@ -31,7 +31,7 @@ export default defineConfig([
     treeshake: true,
     clean: true,
     minify: false,
-    sourcemap: true,
+    sourcemap: false,
     esbuildPlugins: [browserJsonPlugin, polyfillNode({ polyfills: { path: true, util: true } })],
     // Bundle all dependencies into a single file for browser use
     noExternal: [/.*/],
@@ -39,7 +39,7 @@ export default defineConfig([
   },
   // Browser IIFE bundle — for <script> tag / CDN usage
   {
-    entry: { 'caniemail-tool': 'src/index.ts' },
+    entry: { 'caniemail-sdk': 'src/index.ts' },
     format: ['iife'],
     outDir: 'dist/browser',
     platform: 'browser',
@@ -48,7 +48,7 @@ export default defineConfig([
     treeshake: true,
     clean: false, // Don't clean — ESM build already ran
     minify: true,
-    sourcemap: true,
+    sourcemap: false,
     globalName: 'CanIEmail',
     esbuildPlugins: [browserJsonPlugin, polyfillNode({ polyfills: { path: true, util: true } })],
     noExternal: [/.*/],
