@@ -1,49 +1,103 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="theme-color" content="#10b981" />
 
-    <title>caniemail-sdk Playground — Email HTML/CSS Compatibility Checker</title>
+    <title>Email HTML/CSS Compatibility Checker — caniemail-sdk Playground</title>
     <meta
       name="description"
-      content="Check HTML and CSS email compatibility across 32+ email clients (Gmail, Outlook, Apple Mail, Yahoo, and more) in real-time. Powered by caniemail.com data."
+      content="Free online tool to check HTML and CSS email compatibility across 32+ email clients including Gmail, Outlook, Apple Mail, and Yahoo. Real-time linting powered by caniemail.com data."
     />
     <meta
       name="keywords"
-      content="email compatibility, html email, css email, gmail, outlook, apple mail, yahoo, caniemail, email checker, email linter, email client support"
+      content="email compatibility checker, html email tester, css email support, gmail compatibility, outlook compatibility, apple mail, email linter, caniemail"
     />
     <meta name="author" content="Amaresh S M" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="caniemail-sdk Playground — Email HTML/CSS Compatibility Checker"
+      content="Email HTML/CSS Compatibility Checker — caniemail-sdk Playground"
     />
     <meta
       property="og:description"
-      content="Check HTML and CSS email compatibility across 32+ email clients in real-time. Powered by caniemail.com data."
+      content="Free online tool to check HTML and CSS email compatibility across 32+ email clients in real-time."
     />
-    <meta property="og:image" content="/favicon.svg" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="caniemail-sdk Playground — Email Compatibility Checker" />
     <meta property="og:site_name" content="caniemail-sdk" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="caniemail-sdk Playground — Email Compatibility Checker"
+      content="Email HTML/CSS Compatibility Checker — caniemail-sdk Playground"
     />
     <meta
       name="twitter:description"
-      content="Check HTML and CSS email compatibility across 32+ email clients. Powered by caniemail.com data."
+      content="Free online tool to check HTML and CSS email compatibility across 32+ email clients in real-time."
     />
-    <meta name="twitter:image" content="/favicon.svg" />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "caniemail-sdk Playground",
+        "description": "Free online tool to check HTML and CSS email compatibility across 32+ email clients in real-time.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any (browser-based)",
+        "offers": { "@type": "Offer", "price": "0" },
+        "author": { "@type": "Person", "name": "Amaresh S M" },
+        "isBasedOn": "https://www.caniemail.com/"
+      }
+    </script>
+
+    <!-- Set theme before paint to avoid FOUC -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('ui-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored === 'light' || stored === 'dark' ? stored : prefersDark ? 'dark' : 'light';
+          document.documentElement.classList.add(theme);
+        } catch (e) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen bg-background text-foreground antialiased">
-    <div id="root"></div>
+    <div id="root">
+      <noscript>
+        <div style="max-width: 640px; margin: 4rem auto; padding: 2rem; font-family: system-ui, -apple-system, sans-serif; line-height: 1.6;">
+          <h1>Email HTML/CSS Compatibility Checker</h1>
+          <p>
+            This playground is an interactive tool to check how your HTML emails will render across
+            32+ email clients including Gmail, Outlook, Apple Mail, and Yahoo. It runs entirely in
+            your browser and requires JavaScript to be enabled.
+          </p>
+          <p>
+            Compatibility data is sourced from
+            <a href="https://www.caniemail.com/">caniemail.com</a>.
+          </p>
+          <p>
+            The underlying library, <strong>caniemail-sdk</strong>, can be used directly:
+            <code>npm install caniemail-sdk</code>. See the
+            <a href="https://github.com/amareshsm/caniemail-sdk">GitHub repository</a> for details.
+          </p>
+        </div>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
