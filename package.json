@@ -1,6 +1,6 @@
 {
   "name": "caniemail-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTML and CSS Feature Support for Email Clients from caniemail.com — works in Node.js and browsers",
   "license": "MIT",
   "repository": "amareshsm/caniemail-sdk",

@@ -1,5 +1,21 @@
 # caniemail-sdk ChangeLog
 
+## v1.0.1
+
+_2026-05-14_
+
+### Bug fixes
+
+- **CSS property matching** — corrected `getMatchingPropertyTitles` in `src/css-titles.ts` to use exact array membership instead of JS's string-coercion-based `Array.prototype.includes` fallback. The previous behavior was inherited from upstream and caused two classes of incorrect results:
+  - **False positives**: `line-height` was incorrectly matched against the "height property" feature; `font-weight` matched "font shorthand"; `padding-left` matched "padding"; `border-top-width` matched both "border" and "width property"; etc.
+  - **False negatives**: `left`, `right`, `top`, `bottom` properties were silently undetected because the upstream's intentional `'left, right, top, bottom': ['left', 'right', 'top', 'bottom']` mapping was effectively dead code under the buggy comparator.
+
+### Behavior changes (for consumers upgrading from 1.0.0)
+
+- Some emails will report **fewer warnings** on sub-properties (`line-height`, `max-width`, `font-weight`, `padding-left`, `border-top-width`, etc.) — these were false positives.
+- Some emails will report **new warnings** on `left`/`right`/`top`/`bottom` properties — these were previously missed.
+- `canIEmailScore()` results may shift by a few percentage points for emails using positioning or sub-property declarations. Internal `FIXTURE_PERFECT_TABLE_EMAIL` test fixture moved from A (~91%) to B (~88.5%) as a result.
+
 ## v1.0.0
 
 _2026-05-14_
