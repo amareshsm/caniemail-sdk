@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "HTML and CSS Feature Support for Email Clients from caniemail.com — works in Node.js and browsers",
   "license": "MIT",
-  "repository": "amareshsm/caniemail-toolkit",
+  "repository": "amareshsm/caniemail-sdk",
   "author": "Amaresh <amareshsm13@gmail.com>",
-  "homepage": "https://github.com/amareshsm/caniemail-toolkit#README",
+  "homepage": "https://github.com/amareshsm/caniemail-sdk#README",
   "type": "module",
   "exports": {
     "./caniemail.json": "./data/caniemail.json",

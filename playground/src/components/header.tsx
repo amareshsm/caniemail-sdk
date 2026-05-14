@@ -69,7 +69,7 @@ export function Header() {
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" asChild>
                 <a
-                  href="https://github.com/amareshsm/caniemail-toolkit"
+                  href="https://github.com/amareshsm/caniemail-sdk"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
