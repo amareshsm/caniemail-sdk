@@ -152,7 +152,13 @@ function StatsBar({
             <AlertCircle className="w-4 h-4 text-destructive" />
           </motion.div>
         )}
-        <span className="text-xs font-semibold">{result.success ? 'PASS' : 'FAIL'}</span>
+        <span
+          className={`text-xs font-semibold ${
+            result.success ? 'text-success' : 'text-destructive'
+          }`}
+        >
+          {result.success ? 'PASS' : 'FAIL'}
+        </span>
       </div>
 
       <div className="h-3.5 w-px bg-border" />

@@ -2120,23 +2120,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 9,
-              "line": 376,
-            },
-            "start": {
-              "column": 3,
-              "line": 24,
-            },
-          },
-          "support": "partial",
-          "title": "background",
-        },
-        {
-          "notes": [
             "Buggy. \`display:none\` does not inherit to inner tables.",
             "Partial. Only supports \`display:none\` (but not on \`<img>\`).",
           ],
@@ -2170,23 +2153,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "display:none",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 10,
-              "line": 42,
-            },
-            "start": {
-              "column": 5,
-              "line": 27,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -2224,23 +2190,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\`, \`<p>\` or \`<img>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 10,
-              "line": 42,
-            },
-            "start": {
-              "column": 5,
-              "line": 27,
-            },
-          },
-          "support": "partial",
-          "title": "width property",
-        },
-        {
-          "notes": [
             "Buggy. Percentage width on \`<img>\` elements are based on the physical file's width, not on the parent element's width.",
             "Buggy. Sizes set in attributes don't scale in 120 dpi mode.",
           ],
@@ -2256,23 +2205,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "width attribute",
-        },
-        {
-          "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 12,
-              "line": 374,
-            },
-            "start": {
-              "column": 5,
-              "line": 43,
-            },
-          },
-          "support": "partial",
-          "title": "background",
         },
         {
           "notes": [
@@ -2313,23 +2245,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\`, \`<p>\` or \`<img>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 20,
-              "line": 369,
-            },
-            "start": {
-              "column": 15,
-              "line": 56,
-            },
-          },
-          "support": "partial",
-          "title": "width property",
-        },
-        {
-          "notes": [
             "Buggy. Percentage width on \`<img>\` elements are based on the physical file's width, not on the parent element's width.",
             "Buggy. Sizes set in attributes don't scale in 120 dpi mode.",
           ],
@@ -2362,23 +2277,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "max-width",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\`, \`<p>\` or \`<img>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 24,
-              "line": 257,
-            },
-            "start": {
-              "column": 17,
-              "line": 60,
-            },
-          },
-          "support": "partial",
-          "title": "width property",
         },
         {
           "notes": [
@@ -2656,24 +2554,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 34,
-              "line": 122,
-            },
-            "start": {
-              "column": 33,
-              "line": 110,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
             "Buggy. Percentage width on \`<img>\` elements are based on the physical file's width, not on the parent element's width.",
             "Buggy. Sizes set in attributes don't scale in 120 dpi mode.",
           ],
@@ -2706,23 +2586,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 36,
-              "line": 149,
-            },
-            "start": {
-              "column": 33,
-              "line": 139,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -2797,23 +2660,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 37,
-              "line": 160,
-            },
-            "start": {
-              "column": 33,
-              "line": 150,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
-        },
-        {
-          "notes": [
             "Buggy. \`em\` and \`px\` units behave weirdly. Use \`mso-line-height-rule:exactly\`.",
           ],
           "position": {
@@ -2869,41 +2715,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 37,
-              "line": 160,
-            },
-            "start": {
-              "column": 33,
-              "line": 150,
-            },
-          },
-          "support": "partial",
-          "title": "background",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 37,
-              "line": 160,
-            },
-            "start": {
-              "column": 33,
-              "line": 150,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
             "Partial support. \`rem\` values are not supported.",
           ],
           "position": {
@@ -2918,23 +2729,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 36,
-              "line": 171,
-            },
-            "start": {
-              "column": 33,
-              "line": 161,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -2989,23 +2783,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 36,
-              "line": 183,
-            },
-            "start": {
-              "column": 33,
-              "line": 172,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -3082,42 +2859,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 40,
-              "line": 249,
-            },
-            "start": {
-              "column": 33,
-              "line": 196,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
             "Buggy. \`display:none\` does not inherit to inner tables.",
             "Partial. Only supports \`display:none\` (but not on \`<img>\`).",
           ],
@@ -3150,23 +2891,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -3204,23 +2928,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\`, \`<p>\` or \`<img>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "width property",
-        },
-        {
-          "notes": [
             "Partial. Flow-relative values \`start\` and \`end\` are not supported.",
           ],
           "position": {
@@ -3253,23 +2960,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "text-decoration",
-        },
-        {
-          "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "background",
         },
         {
           "notes": [
@@ -3346,23 +3036,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 28,
-              "line": 288,
-            },
-            "start": {
-              "column": 25,
-              "line": 278,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
-        },
-        {
-          "notes": [
             "Buggy. \`em\` and \`px\` units behave weirdly. Use \`mso-line-height-rule:exactly\`.",
           ],
           "position": {
@@ -3434,23 +3107,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 28,
-              "line": 301,
-            },
-            "start": {
-              "column": 25,
-              "line": 289,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
-        },
-        {
-          "notes": [
             "Buggy. \`em\` and \`px\` units behave weirdly. Use \`mso-line-height-rule:exactly\`.",
           ],
           "position": {
@@ -3520,23 +3176,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 53,
-              "line": 299,
-            },
-            "start": {
-              "column": 27,
-              "line": 290,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -3592,23 +3231,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 28,
-              "line": 314,
-            },
-            "start": {
-              "column": 25,
-              "line": 302,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
-        },
-        {
-          "notes": [
             "Buggy. \`em\` and \`px\` units behave weirdly. Use \`mso-line-height-rule:exactly\`.",
           ],
           "position": {
@@ -3678,23 +3300,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 58,
-              "line": 312,
-            },
-            "start": {
-              "column": 27,
-              "line": 303,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -3750,23 +3355,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 28,
-              "line": 327,
-            },
-            "start": {
-              "column": 25,
-              "line": 315,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
-        },
-        {
-          "notes": [
             "Buggy. \`em\` and \`px\` units behave weirdly. Use \`mso-line-height-rule:exactly\`.",
           ],
           "position": {
@@ -3836,23 +3424,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 68,
-              "line": 325,
-            },
-            "start": {
-              "column": 27,
-              "line": 316,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -3943,23 +3514,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "font-size",
-        },
-        {
-          "notes": [
-            "Partial. Not supported on \`<body>\`, \`<span>\`, \`<div>\` or \`<p>\` elements.",
-          ],
-          "position": {
-            "end": {
-              "column": 28,
-              "line": 347,
-            },
-            "start": {
-              "column": 25,
-              "line": 337,
-            },
-          },
-          "support": "partial",
-          "title": "height property",
         },
         {
           "notes": [
@@ -4072,23 +3626,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 9,
-              "line": 376,
-            },
-            "start": {
-              "column": 3,
-              "line": 24,
-            },
-          },
-          "support": "partial",
-          "title": "background",
-        },
-        {
-          "notes": [
             "Buggy. \`display:none\` does not inherit to inner tables.",
             "Partial. Only supports \`display:none\` (but not on \`<img>\`).",
           ],
@@ -4156,23 +3693,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "max-width",
-        },
-        {
-          "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 12,
-              "line": 374,
-            },
-            "start": {
-              "column": 5,
-              "line": 43,
-            },
-          },
-          "support": "partial",
-          "title": "background",
         },
         {
           "notes": [
@@ -4390,24 +3910,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "margin",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 34,
-              "line": 122,
-            },
-            "start": {
-              "column": 33,
-              "line": 110,
-            },
-          },
-          "support": "partial",
-          "title": "border",
         },
         {
           "notes": [
@@ -4552,41 +4054,6 @@ exports[`check() file > fixture html file 1`] = `
         },
         {
           "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 37,
-              "line": 160,
-            },
-            "start": {
-              "column": 33,
-              "line": 150,
-            },
-          },
-          "support": "partial",
-          "title": "background",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 37,
-              "line": 160,
-            },
-            "start": {
-              "column": 33,
-              "line": 150,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
             "Partial support. \`relative\` and \`percentage\` size values not supported.",
           ],
           "position": {
@@ -4690,42 +4157,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "margin",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 40,
-              "line": 249,
-            },
-            "start": {
-              "column": 33,
-              "line": 196,
-            },
-          },
-          "support": "partial",
-          "title": "border",
-        },
-        {
-          "notes": [
-            "Partial. A border can not be bigger than 8px.",
-            "Buggy. Unreliable if used on a \`<p>\` or a \`<div>\`.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "border",
         },
         {
           "notes": [
@@ -4830,23 +4261,6 @@ exports[`check() file > fixture html file 1`] = `
           },
           "support": "partial",
           "title": "text-decoration",
-        },
-        {
-          "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 63,
-              "line": 244,
-            },
-            "start": {
-              "column": 1,
-              "line": 228,
-            },
-          },
-          "support": "partial",
-          "title": "background",
         },
         {
           "notes": [
@@ -11739,26 +11153,6 @@ exports[`check() works > parses CSS 1`] = `
       ],
     },
     "warnings": Map {
-      "outlook.windows" => [
-        {
-          "notes": [
-            "Partial. Only \`background-color\` values are supported.",
-          ],
-          "position": {
-            "end": {
-              "column": 33,
-              "line": 1,
-            },
-            "source": "",
-            "start": {
-              "column": 9,
-              "line": 1,
-            },
-          },
-          "support": "partial",
-          "title": "background",
-        },
-      ],
       "gmail.ios" => [
         {
           "notes": [

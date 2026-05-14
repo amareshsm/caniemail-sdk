@@ -126,7 +126,11 @@ export const getMatchingKeywordTitles = ({ propertyValue }: { propertyValue: str
   getTitleMatches(keywordTitles, propertyValue);
 
 export const getMatchingPropertyTitles = ({ propertyName }: { propertyName: string }): string[] =>
-  getTitleMatches(propertyTitles, propertyName);
+  getTitleMatches(
+    propertyTitles,
+    propertyName,
+    (value, target) => Array.isArray(value) && value.includes(target as string)
+  );
 
 export const getMatchingUnitTitles = ({ propertyValue }: { propertyValue: string }) =>
   getTitleMatches(unitTitles, propertyValue, (value) => {

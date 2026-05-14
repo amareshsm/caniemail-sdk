@@ -48,7 +48,9 @@ function saveToStorage(key: string, value: unknown) {
 
 export default function App() {
   // Editor state
-  const [htmlCode, setHtmlCode] = useState(() => loadFromStorage('caniemail-html', SAMPLE_EMAIL));
+  const [htmlCode, setHtmlCode] = useState(() =>
+    loadFromStorage('caniemail-html-v3', SAMPLE_EMAIL)
+  );
   const [editorTheme, setEditorTheme] = useState<EditorTheme>(() =>
     loadFromStorage('caniemail-editor-theme-v2', 'github')
   );
@@ -73,7 +75,7 @@ export default function App() {
   }, [debouncedHtml, enabledClients, check]);
 
   // Persist state
-  useEffect(() => saveToStorage('caniemail-html', htmlCode), [htmlCode]);
+  useEffect(() => saveToStorage('caniemail-html-v3', htmlCode), [htmlCode]);
   useEffect(() => saveToStorage('caniemail-editor-theme-v2', editorTheme), [editorTheme]);
   useEffect(() => saveToStorage('caniemail-clients', [...enabledClients]), [enabledClients]);
 
@@ -192,7 +194,7 @@ export default function App() {
               onChange={setHtmlCode}
               editorTheme={editorTheme}
               language="html"
-              className="flex-1 overflow-hidden"
+              className="flex-1 min-h-0 overflow-hidden"
             />
           </motion.div>
 

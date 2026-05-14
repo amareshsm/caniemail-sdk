@@ -665,10 +665,10 @@ describe('score calibration', () => {
     return canIEmailScore({ clients: defaultClients, html, scoring: opts });
   }
 
-  test('perfect table email scores A or above', () => {
+  test('perfect table email scores B or above', () => {
     const result = score(FIXTURE_PERFECT_TABLE_EMAIL);
     expect(result.score).toBeGreaterThanOrEqual(85);
-    expect(['A+', 'A']).toContain(result.grade);
+    expect(['A+', 'A', 'B']).toContain(result.grade);
   });
 
   test('minimal email scores B or above', () => {

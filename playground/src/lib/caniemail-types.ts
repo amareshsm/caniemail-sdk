@@ -130,26 +130,24 @@ export interface ClientPreset {
   clients: readonly string[];
 }
 
+// "Modern" = clients with strong, broad modern CSS support.
+// Excluded on purpose: ProtonMail (strips <body>, <style>, etc.), Fastmail
+// (strips <body>), Outlook Windows Mail (still has Word-engine quirks),
+// Gmail Mobile Web (strips <style> block).
 const MODERN_CLIENTS: readonly string[] = [
   'apple-mail.macos',
   'apple-mail.ios',
   'gmail.desktop-webmail',
   'gmail.ios',
   'gmail.android',
-  'gmail.mobile-webmail',
   'outlook.macos',
   'outlook.ios',
   'outlook.android',
-  'outlook.windows-mail',
   'yahoo.desktop-webmail',
   'yahoo.ios',
   'yahoo.android',
   'samsung-email.android',
-  'thunderbird.macos',
-  'protonmail.desktop-webmail',
-  'protonmail.ios',
-  'protonmail.android',
-  'fastmail.desktop-webmail'
+  'thunderbird.macos'
 ];
 
 const POPULAR_CLIENTS: readonly string[] = [

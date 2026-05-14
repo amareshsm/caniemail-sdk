@@ -54,8 +54,9 @@ export function CodeEditor({
       lang,
       EditorView.lineWrapping,
       EditorView.theme({
-        '&': { height: '100%' },
-        '.cm-scroller': { overflow: 'auto' }
+        '&': { height: '100%', maxHeight: '100%' },
+        '.cm-scroller': { overflow: 'auto' },
+        '.cm-editor': { height: '100%' }
       })
     ];
   }, [language]);
@@ -68,12 +69,14 @@ export function CodeEditor({
   );
 
   return (
-    <div className={className}>
+    <div className={`min-h-0 h-full ${className ?? ''}`}>
       <CodeMirror
         value={value}
         onChange={handleChange}
         extensions={extensions}
         theme={theme}
+        height="100%"
+        style={{ height: '100%' }}
         basicSetup={{
           lineNumbers: true,
           foldGutter: true,
