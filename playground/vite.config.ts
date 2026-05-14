@@ -8,9 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      // Resolve the parent caniemail-sdk browser build
-      'caniemail-sdk': path.resolve(__dirname, '../dist/browser/index.mjs')
+      '@': path.resolve(__dirname, './src')
     }
   }
 });
